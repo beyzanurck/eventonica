@@ -1,18 +1,21 @@
-import Card from 'react-bootstrap/Card';
+import React, { useState } from 'react'
 
-const EventCard = (props) => {
+export default function Event(props) {
+    const [isFaved, setIsFaved] = useState("favorite_border")
 
-    return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Date: {!props.time ? "TBD" : null}</Card.Subtitle>
-                <Card.Text>
-                    Location: {props.location}
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    )
+    function handleFavories () {
+        setIsFaved("favorite")
+    }
+
+
+  return (
+    <div className='event-row'>
+        <span class="material-icons" onClick={handleFavories}>{isFaved}</span>
+        <p>{props.events[0].title}</p>
+        <p>{props.events[0].location}</p>
+        <p>{props.events[0].eventtime}</p>
+        <span class="material-icons">edit</span>
+        <span class="material-icons">delete</span>
+    </div>
+  )
 }
-
-export default EventCard;

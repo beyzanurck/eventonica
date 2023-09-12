@@ -8,6 +8,8 @@
   box-shadow: 1px, gray;
 }
 
+
+
 h1 {
   color: #00556e;
   margin-bottom: 50px !important;
@@ -15,4 +17,11 @@ h1 {
 
 form{
   margin-top: 50px;
+}
+
+
+
+.event-row{
+  display: flex;
+  justify-content: space-around;
 }
