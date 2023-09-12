@@ -11,9 +11,9 @@ export default function Event(props) {
   return (
     <div className='event-row'>
         <span class="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
-        <p>{props.events[0].title}</p>
-        <p>{props.events[0].location}</p>
-        <p>{props.events[0].eventtime}</p>
+        <p>{props.event.title}</p>
+        <p>{props.event.location}</p>
+        <p>{props.event.eventtime}</p>
         <span class="material-icons">edit</span>
         <span class="material-icons">delete</span>
     </div>

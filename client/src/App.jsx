@@ -20,9 +20,14 @@ function App() {
   return (
     <div className="App">
     <h1>Techtonica 2023 H2 events</h1>
-    
+
     {
-      events.length > 0 ? <Event events = {events} /> : ` `
+      events.length > 0 ? 
+      events.map((item, index) => (
+        <Event event = {item} key={index} />
+      ))
+       : 
+      ` `
     }
     
   </div>
