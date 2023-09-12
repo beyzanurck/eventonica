@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Title from './Title'
+import Time from './Time'
+import Location from './Location'
 
 export default function Event(props) {
     const [isFaved, setIsFaved] = useState(false)
@@ -11,9 +14,9 @@ export default function Event(props) {
   return (
     <div className='event-row'>
         <span class="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
-        <p>{props.event.title}</p>
-        <p>{props.event.location}</p>
-        <p>{props.event.eventtime}</p>
+        <Title text = {props.event.title}/>
+        <Location text = {props.event.location}/>
+        <Time text = {props.event.eventtime}/>
         <span class="material-icons">edit</span>
         <span class="material-icons">delete</span>
     </div>
