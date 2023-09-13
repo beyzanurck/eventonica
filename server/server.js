@@ -77,5 +77,26 @@ app.get('/api/events/:id', async (req, res) =>{
 })
 
 
+//UPDATE AN EVENT
+app.put('/api/events/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const {title, location, eventtime} = req.body; 
+
+      const editedEvent = await db.query(
+        "UPDATE events SET title = $1, location = $2, eventtime = $3 WHERE id = $4 RETURNING *",
+        [title, location, eventtime, id]
+      );
+  
+      //res.json(editedEvent.rows[0]);
+      res.json("Todo was updated!");
+    } catch(error){
+        console.log(error);
+        return res.status(400).json({error});
+    }  
+});
+
+
 
 app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
