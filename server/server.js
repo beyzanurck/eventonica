@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 // //creates an endpoint for the route `/`
 app.get("/", (req, res) => {
     res.json("Hello Techtonica 2023 H2 to your Server for Eventonica");
-  });
+});
 
 
+//GET ALL EVENTS
 app.get('/api/events', async (req, res) =>{
 
     //real connection with the DB eventonica
@@ -55,6 +56,24 @@ app.post("/api/events", async (req, res) => {
         console.error(err.message)
         res.status(400).json({err});
     }
+})
+
+
+//GET AN EVENT
+app.get('/api/events/:id', async (req, res) =>{
+
+    try{
+        const { id } = req.params;
+        const event = await db.query("SELECT * FROM events WHERE id = $1",  [id]
+        );
+    
+        res.json(event.rows[0]);
+
+    } catch(error){
+        console.log(error);
+        return res.status(400).json({error});
+
+    }    
 })
 
 
