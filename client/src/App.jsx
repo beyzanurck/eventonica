@@ -3,6 +3,8 @@ import Event from './components/event';
 import React, {useState, useEffect} from 'react';
 
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
 
 function App() {
 
@@ -11,7 +13,7 @@ function App() {
   const [newEvent, setNewEvent] = useState({
     title: "",
     location: "",
-    eventtime: ""
+    eventtime: new Date()
   });
 
   const getAllEvents = () => {
@@ -51,7 +53,11 @@ function App() {
         body: JSON.stringify(body)
       });
 
-      window.location = "/";
+      //window.location = "/";
+      if (response.ok) {
+        getAllEvents();
+        setNewEvent({ title: '', location: '', eventtime: new Date() }); 
+      } 
     } catch (err) {
       console.error(err.message);
     }
@@ -76,10 +82,17 @@ function App() {
     }
 
     <form onSubmit={handleSubmit}>
-        <input name="title" onChange={handleChange} placeholder="Title" />
-        <input name="location" onChange={handleChange} placeholder="Location" />
-        <input name="eventtime" onChange={handleChange} placeholder="MM/DD/YY" />
-
+        <input name="title" onChange={handleChange} value={newEvent.title} placeholder="Title" />
+        <input name="location" onChange={handleChange} value={newEvent.location} placeholder="Location" />
+        <DatePicker
+          name="eventtime"
+          selected={newEvent.eventtime}
+          onChange={(date) => setNewEvent({ ...newEvent, eventtime: date })}
+          placeholderText="Select Date"
+          showTimeSelect
+          // dateFormat="MMMM d, yyyy h:mm aa"
+          dateFormat="MMMM d, yyyy"
+        />
         <button type="submit">Add Event</button>
     </form>
     
