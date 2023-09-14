@@ -6,7 +6,7 @@ function App() {
 
   const [events, setEvents] = useState([]);
 
-  const getRequest = () => {
+  const getAllEvents = () => {
     fetch("http://localhost:8080/api/events")
     .then((response) => response.json())
     .then(events => {
@@ -21,14 +21,15 @@ function App() {
         method: "DELETE"
       });
 
-      setEvents(events.filter(event => event.id !== id))
-      
+      //setEvents(events.filter(event => event.id !== id))
+      getAllEvents();
+
     } catch (error) {
       console.error(error.message)
     }
   }
 
-  useEffect(() => {getRequest()}, []);
+  useEffect(() => {getAllEvents()}, []);
 
   return (
     <div className="App">
