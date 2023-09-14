@@ -13,12 +13,16 @@ export default function Event(props) {
 
   return (
     <div className='event-row'>
-        <span class="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
+
+        <span className="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
+        
         <Title text = {props.event.title}/>
         <Location text = {props.event.location}/>
         <Time text = {props.event.eventtime}/>
-        <span class="material-icons">edit</span>
-        <span class="material-icons" onClick={() => {props.onClicked(props.event.id)}}>delete</span>
+
+        <span className="material-icons">edit</span>
+        <span className="material-icons" onClick={() => {props.onClicked(props.event.id)}}>delete</span>
+
     </div>
   )
 }
