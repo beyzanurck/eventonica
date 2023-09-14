@@ -15,6 +15,19 @@ function App() {
       });
   }
 
+  const deleteEvent = async (id) => {
+    try {
+      const deleteEvent = await fetch(`http://localhost:8080/api/events/${id}`, {
+        method: "DELETE"
+      });
+
+      setEvents(events.filter(event => event.id !== id))
+      
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
   useEffect(() => {getRequest()}, []);
 
   return (
@@ -24,7 +37,7 @@ function App() {
     {
       events.length > 0 ? 
       events.map((item, index) => (
-        <Event event = {item} key={index} />
+        <Event event = {item} key={index} onClicked = {deleteEvent}/>
       ))
        : 
       ` `

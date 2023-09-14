@@ -18,7 +18,7 @@ export default function Event(props) {
         <Location text = {props.event.location}/>
         <Time text = {props.event.eventtime}/>
         <span class="material-icons">edit</span>
-        <span class="material-icons">delete</span>
+        <span class="material-icons" onClick={() => {props.onClicked(props.event.id)}}>delete</span>
     </div>
   )
 }
