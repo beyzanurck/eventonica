@@ -54,20 +54,42 @@ function App() {
     }
   };
 
+  // const updateEvent = async (editedEvent) => {
+    
+  //   try {
+  //     const { title, location, eventtime } = editedEvent;
+  //     const body = { title, location, eventtime };
+  //     const response = await fetch(
+  //       `http://localhost:8080/api/events/${id}`,
+  //       {
+  //         method: "PUT",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(body)
+  //       }
+  //     );
+
+  //     if (response.ok) {
+  //       getAllEvents();
+  //     } 
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
+
   return (
     <div className="App">
-    <h1>Techtonica 2023 H2 events</h1>
+      <h1>Techtonica 2023 H2 events</h1>
 
-    {
-      events.length > 0 ? 
-      events.map((item, index) => (
-        <Event event = {item} key={index} onClicked = {deleteEvent}/>
-      ))
-       : 
-      ` `
-    }
+      {
+        events.length > 0 ? 
+        events.map((item, index) => (
+          <Event event = {item} key={index} onClicked = {deleteEvent}/>
+        ))
+        : 
+        ` `
+      }
 
-    <NewEvent addEvent={addNewEvent}/>
+      <NewEvent addEvent={addNewEvent}/>
 
   </div>
   )

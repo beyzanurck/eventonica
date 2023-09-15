@@ -1,7 +1,9 @@
 .App {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 4%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .Events {
@@ -24,4 +26,23 @@ form{
 .event-row{
   display: flex;
   justify-content: space-around;
+}
+
+.form-newEvent{
+  display: flex;
+  flex-direction: column;
+  margin-left: 35%;
+}
+
+.input-newEvent, .date {
+  margin : 0.5%;
+  padding: 0.5%;
+  width: 40%;
+}
+
+.btn-add-event {
+  margin : 0.5%;
+  margin-left: 10%;
+  padding: 0.5%;
+  width: 20%;
 }
