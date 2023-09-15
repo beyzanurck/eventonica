@@ -1,20 +1,12 @@
 import './App.css';
 import Event from './components/event';
 import React, {useState, useEffect} from 'react';
+import NewEvent from './components/NewEvent';
 
-
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
 
 function App() {
 
   const [events, setEvents] = useState([]);
-
-  const [newEvent, setNewEvent] = useState({
-    title: "",
-    location: "",
-    eventtime: new Date()
-  });
 
   const getAllEvents = () => {
     fetch("http://localhost:8080/api/events")
@@ -24,6 +16,8 @@ function App() {
       console.log('Events fetched...', events);
       });
   }
+  useEffect(() => {getAllEvents()}, []);
+
 
   const deleteEvent = async (id) => {
     try {
@@ -39,11 +33,9 @@ function App() {
     }
   }
 
-  useEffect(() => {getAllEvents()}, []);
 
-
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const addNewEvent = async (newEvent) => {
+    
     try {
       const { title, location, eventtime } = newEvent;
       const body = { title, location, eventtime };
@@ -56,17 +48,11 @@ function App() {
       //window.location = "/";
       if (response.ok) {
         getAllEvents();
-        setNewEvent({ title: '', location: '', eventtime: new Date() }); 
       } 
     } catch (err) {
       console.error(err.message);
     }
   };
-
-  function handleChange(event){
-    const { value, name } = event.target;
-    setNewEvent((preValue) => ({ ...preValue, [name]: value }));
-  }
 
   return (
     <div className="App">
@@ -81,24 +67,11 @@ function App() {
       ` `
     }
 
-    <form onSubmit={handleSubmit}>
-        <input name="title" onChange={handleChange} value={newEvent.title} placeholder="Title" />
-        <input name="location" onChange={handleChange} value={newEvent.location} placeholder="Location" />
-        <DatePicker
-          name="eventtime"
-          selected={newEvent.eventtime}
-          onChange={(date) => setNewEvent({ ...newEvent, eventtime: date })}
-          placeholderText="Select Date"
-          showTimeSelect
-          // dateFormat="MMMM d, yyyy h:mm aa"
-          dateFormat="MMMM d, yyyy"
-        />
-        <button type="submit">Add Event</button>
-    </form>
-    
-  </div>
+    <NewEvent addEvent={addNewEvent}/>
 
+  </div>
   )
 }
 
 export default App
+
