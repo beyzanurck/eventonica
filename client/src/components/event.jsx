@@ -4,7 +4,6 @@ import Time from './Time'
 import Location from './Location'
 import UpdateEvent from './UpdateEvent'
 
-
 export default function Event(props) {
     const [isFaved, setIsFaved] = useState(false)
 
@@ -44,16 +43,32 @@ export default function Event(props) {
 
 
   return (
-    <div className='event-row'>
+    
+    <tr>
 
-        <span className="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
+        <td>
+            <span className="material-icons" onClick={handleFavories}>{isFaved ? 'favorite' : 'favorite_border'}</span>
+        </td>
 
-        <Title text = {props.event.title}/>
-        <Location text = {props.event.location}/>
-        <Time text = {props.event.eventtime}/>
+        <td>
+            <Title text = {props.event.title}/>
+        </td>
 
-        <span className="material-icons" onClick={handleShow}>edit</span>
-        <span className="material-icons" onClick={() => {props.onClicked(props.event.id)}}>delete</span>
+        <td>
+            <Location text = {props.event.location}/>
+        </td>
+
+        <td>
+            <Time text = {props.event.eventtime}/>
+        </td>
+
+        <td>
+            <span className="material-icons" onClick={handleShow}>edit</span>
+        </td>
+
+        <td>
+            <span className="material-icons" onClick={() => {props.onClicked(props.event.id)}}>delete</span>
+        </td>
 
 
         <UpdateEvent
@@ -63,8 +78,6 @@ export default function Event(props) {
             onUpdate={updateEvent}
         />
 
-    </div>
-
-
+    </tr>
   )
 }

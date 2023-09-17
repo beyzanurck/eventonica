@@ -2,6 +2,7 @@ import './App.css';
 import Event from './components/event';
 import React, {useState, useEffect} from 'react';
 import NewEvent from './components/NewEvent';
+import Table from 'react-bootstrap/Table';
 
 
 function App() {
@@ -59,14 +60,31 @@ function App() {
     <div className="App">
       <h1>Techtonica 2023 H2 events</h1>
 
-      {
-        events.length > 0 ? 
-        events.map((item, index) => (
-          <Event event = {item} key={index} onClicked = {deleteEvent} />
-        ))
-        : 
-        ` `
-      }
+      <Table striped>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {
+            events.length > 0 ? 
+            events.map((item, index) => (
+              <Event event = {item} key={index} onClicked = {deleteEvent} />
+            ))
+            : 
+            ` `
+          }
+
+        </tbody>
+      </Table>
 
       <NewEvent addEvent={addNewEvent}/>
 
