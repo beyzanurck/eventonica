@@ -15,7 +15,7 @@ export default function UpdateEvent({ show, event, onClose, onUpdate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    onUpdate(editedEvent);
+    onUpdate(editedEvent, event.id);
   };
 
   const handleChange = (event) => {
@@ -64,7 +64,7 @@ export default function UpdateEvent({ show, event, onClose, onUpdate }) {
         <Button variant="secondary" onClick={onClose}>
           Close
         </Button>
-        
+
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Save Changes
         </Button>

@@ -2,6 +2,7 @@ import './App.css';
 import Event from './components/event';
 import React, {useState, useEffect} from 'react';
 import NewEvent from './components/NewEvent';
+import Table from 'react-bootstrap/Table';
 
 
 function App() {
@@ -54,19 +55,59 @@ function App() {
     }
   };
 
+  const updateEvent = async (editedEvent, id) => {
+    
+    try {
+    const { title, location, eventtime } = editedEvent;
+    console.log(editedEvent)
+    const body = { title, location, eventtime };
+    const response = await fetch(
+        `http://localhost:8080/api/events/${id}`,
+        {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+        }
+    );
+
+    if (response.ok) {
+        window.location = "/";
+    } 
+    } catch (err) {
+    console.error(err.message);
+    }
+  };
+
 
   return (
     <div className="App">
       <h1>Techtonica 2023 H2 events</h1>
 
-      {
-        events.length > 0 ? 
-        events.map((item, index) => (
-          <Event event = {item} key={index} onClicked = {deleteEvent} />
-        ))
-        : 
-        ` `
-      }
+      <Table striped>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {
+            events.length > 0 ? 
+            events.map((item, index) => (
+              <Event event = {item} key={index} onClicked = {deleteEvent} onUpdated = {updateEvent}/>
+            ))
+            : 
+            ` `
+          }
+
+        </tbody>
+      </Table>
 
       <NewEvent addEvent={addNewEvent}/>
 
