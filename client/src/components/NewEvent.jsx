@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
-
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from './CustomDatePicker.jsx'
 
 export default function NewEvent( { addEvent } ) {
 
@@ -27,17 +25,15 @@ export default function NewEvent( { addEvent } ) {
     return (
         <div>
             <form onSubmit={handleSubmit} className='form-newEvent'>
+
                 <input className = "input-newEvent" name="title" onChange={handleChange} value={newEvent.title} placeholder="Title" />
                 <input className = "input-newEvent" name="location" onChange={handleChange} value={newEvent.location} placeholder="Location" />
-                <DatePicker className='date'
-                name="eventtime"
-                selected={newEvent.eventtime}
-                onChange={(date) => setNewEvent({ ...newEvent, eventtime: date })}
-                placeholderText="Select Date"
-                showTimeSelect
-                // dateFormat="MMMM d, yyyy h:mm aa"
-                dateFormat="MMMM d, yyyy"
+
+                <CustomDatePicker 
+                    selected={newEvent.eventtime}
+                    onChange={(date) => setNewEvent({ ...newEvent, eventtime: date })}
                 />
+
                 <button className = "btn-add-event" type="submit">Add Event</button>
             </form>
         
