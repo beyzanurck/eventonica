@@ -17,35 +17,6 @@ export default function Event(props) {
         setIsFaved(!isFaved)
     }
 
-    // const updateEvent = async (editedEvent) => {
-    
-    //     try {
-    //     const { title, location, eventtime } = editedEvent;
-    //     console.log(editedEvent)
-    //     const body = { title, location, eventtime };
-    //     const response = await fetch(
-    //         `http://localhost:8080/api/events/${props.event.id}`,
-    //         {
-    //         method: "PUT",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(body)
-    //         }
-    //     );
-
-    //     if (response.ok) {
-    //         handleClose()
-    //         window.location = "/";
-    //     } 
-    //     } catch (err) {
-    //     console.error(err.message);
-    //     }
-    // };
-
-    const handleUpdate = () => {
-        //props.onUpdated(editedEvent, props.event.id);
-        //handleClose();
-      };
-
 
   return (
     
